@@ -8,7 +8,9 @@ Here are a few use cases for this action:
 
 ```yml
 name: Triage
-on: [issues]
+on:
+  issues:
+    types: [opened]
 jobs:
   applyTriageLabel:
     name: Apply Triage Label
@@ -20,14 +22,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: label triage --action=opened
+          args: label triage
 ```
 
 ## Commenting on an issue
 
 ```yml
 name: Triage
-on: [issues]
+on:
+  issues:
+    types: [opened]
 jobs:
   commentOnNewIssues:
     name: Comment On New Issues
@@ -39,14 +43,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: comment "Hello World" --action=opened
+          args: comment "Hello World"
 ```
 
 ## Assigning any newly created issues
 
 ```yml
 name: Triage
-on: [issues]
+on:
+  issues:
+    types: [opened]
 jobs:
   assignMonaLisa:
     name: Assign MonaLisa
@@ -58,7 +64,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: assign @monalisaoctocat --action=opened
+          args: assign @monalisaoctocat
 ```
 
 ## Contributing

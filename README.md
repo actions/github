@@ -6,47 +6,65 @@ Here are a few use cases for this action:
 
 ## Applying a "triage" label on any new issue:
 
-```workflow
-workflow "Triage" {
-  on = "issue"
-  resolves = "Apply Triage Label"
-}
-
-action "Apply Triage Label" {
-  uses = "actions/github@v1.0.0"
-  args = "label triage --action=opened" # Only when issues are opened!
-  secrets = ["GITHUB_TOKEN"]
-}
+```yml
+name: Triage
+on:
+  issues:
+    types: [opened]
+jobs:
+  applyTriageLabel:
+    name: Apply Triage Label
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Apply Triage Label
+        uses: actions/github@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: label triage
 ```
 
 ## Commenting on an issue
 
-```workflow
-workflow "Triage" {
-  on = "issue"
-  resolves = "Comment On New Issues"
-}
-
-action "Comment On New Issues" {
-  uses = "actions/github@v1.0.0"
-  args = "comment "Hello World" --action=opened" # Only when issues are opened!
-  secrets = ["GITHUB_TOKEN"]
-}
+```yml
+name: Triage
+on:
+  issues:
+    types: [opened]
+jobs:
+  commentOnNewIssues:
+    name: Comment On New Issues
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Comment On New Issues
+        uses: actions/github@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: comment "Hello World"
 ```
 
 ## Assigning any newly created issues
 
-```workflow
-workflow "Triage" {
-  on = "issue"
-  resolves = "Assign MonaLisa"
-}
-
-action "Assign MonaLisa" {
-  uses = "actions/github@v1.0.0"
-  args = "assign @monalisaoctocat --action=opened" # Only when issues are opened!
-  secrets = ["GITHUB_TOKEN"]
-}
+```yml
+name: Triage
+on:
+  issues:
+    types: [opened]
+jobs:
+  assignMonaLisa:
+    name: Assign MonaLisa
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Assign MonaLisa
+        uses: actions/github@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: assign @monalisaoctocat
 ```
 
 ## Contributing

@@ -16,7 +16,7 @@ jobs:
     name: Apply Triage Label
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - name: Apply Triage Label
         uses: actions/github@v1.0.0
         env:
@@ -37,7 +37,7 @@ jobs:
     name: Comment On New Issues
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - name: Comment On New Issues
         uses: actions/github@v1.0.0
         env:
@@ -58,7 +58,7 @@ jobs:
     name: Assign MonaLisa
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - name: Assign MonaLisa
         uses: actions/github@v1.0.0
         env:
